@@ -1,10 +1,11 @@
 import { createApp } from 'vue'
-const app = createApp(App)
-
 import App from './App.vue'
-import Element3 from "element3"
-import "element3/lib/theme-chalk/index.css"
 
-app.use(Element3)
+import "element3/lib/theme-chalk/index.css";
+import Element3 from "element3";
+const app = createApp(App);
+app.use(Element3);
 
-app.mount("#app")
+app.mount("#app");
+
+// createApp(App).mount('#app')
