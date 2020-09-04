@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div>label:{{label}}</div>
-    <div>value:{{value}}</div>
+    <h1>label:{{label}}</h1>
+    <h1>value:{{value}}</h1>
     <el-button type="primary" @click="increment">Click</el-button>
-    <div>state:{{state}}</div>
-    <div>name:{{name}}</div>
+    <h1>state:{{state}}</h1>
+    <h1>name:{{name}}</h1>
+    <h1>computedState:{{computedState}}</h1>
   </div>
 </template>
 <script>
@@ -12,6 +13,10 @@ import { reactive, computed, toRefs, ref } from 'vue'
 export default {
   // 文件入口
   setup() {
+    // 定义computed属性
+    const computedState = computed({
+      get: () => { return 'state.label:' + state.label + '/' + 'state.value:' + state.value + '/' + 'name.value:' + name.value }
+    })
     // 定义响应式数据
     const name = ref('leslie')
     // 定义响应式数据
@@ -30,7 +35,7 @@ export default {
     // 方法里需要使用.value对变量赋值和取值
     const increment = () => {
       value.value++;
-      label.value = 'my-label' + value.value
+      label.value = Math.random() + value.value
       name.value = 'KK' + '' + value.value
       printState()
     }
@@ -43,7 +48,8 @@ export default {
       increment,
       label,
       value,
-      name
+      name,
+      computedState
     }
   }
 }
